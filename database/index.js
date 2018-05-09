@@ -12,7 +12,7 @@ mongoose.connect(uristring, (err) => {
   }
 });
 
-//set schema
+//set user schema
 let UserSchema = new Schema({
   username: { type: String, unique: true },
   email: { type: String, unique: true},
@@ -74,10 +74,6 @@ module.exports = {
           });
         }
     });
-  },
-  //get user by id to feed deserialize user.
-  getUserById: (id, callback) => {
-    User.findById(id, callback);
   },
 
   //save user data
