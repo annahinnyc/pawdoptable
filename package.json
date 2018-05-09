@@ -1,0 +1,43 @@
+{
+  "name": "pawdoptable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html -p 3030",
+    "react-dev": "webpack -d --watch",
+    "server-dev": "nodemon --inspect server/server-index.js",
+    "test": "SET TESTMONGO_URI='mongodb://localhost:27017/TESTlevelup' && node database/seed/dbSeed.js --timeout 1000 && mocha --timeout 10000"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+    "apollo-boost": "^0.1.6",
+    "axios": "^0.18.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "bcrypt": "^2.0.1",
+    "express": "^4.16.3",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
+    "mongo": "^0.1.0",
+    "mongodb": "^3.0.8",
+    "mongoose": "^5.0.17",
+    "parcel-bundler": "^1.8.1",
+    "react": "^16.3.2",
+    "react-apollo": "^2.1.4",
+    "react-dom": "^16.3.2",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2"
+  },
+  "devDependencies": {}
+}
