@@ -1,0 +1,5 @@
+type Shelters {
+  _id: String!
+  name: String!
+  location: OBJ
+}

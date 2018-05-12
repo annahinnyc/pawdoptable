@@ -1,0 +1,18 @@
+type Users {
+  _id: String!
+  name: String!
+  username: String!
+  email: String!
+  phone: String
+  profilePhotoUrl: String
+  location: OBJ
+  description: String
+  photos: ARR
+  homeType: ARR
+  yard: OBJ
+  children: OBJ
+  pets: OBJ
+  favoritedPets: ARR of Pets type
+  petPreferences: OBJ
+  backgroundCheck: ARR
+}

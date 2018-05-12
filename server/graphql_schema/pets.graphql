@@ -1,0 +1,17 @@
+type Pets {
+  _id: String!
+  species: String!
+  mainBreed: String!
+  subBreeds: ARR
+  name: String!
+  age: Number
+  description: String
+  height: Number
+  weight: Number
+  energy: Number
+  personalityTraits: ARR
+  goodWith: ARR
+  badWith: ARR
+  specialNeeds: OBJ
+  shelter: OBJ from Shelter type
+}

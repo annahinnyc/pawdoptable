@@ -1,4 +1,4 @@
-const users = [
+export default const users = [
   {
     username: "kcloud99",
     email: "kylemcleod1@gmail.com",
@@ -39,8 +39,25 @@ const users = [
   }
 ];
 
-const animals = [
+const pets = [
   {
-
+    species: '',
+    mainBreed: '',
+    subBreeds: [],
+    name: '',
+    description: '',
+    age: '',
+    height: Number,
+    weight: Number,
+    energy: Number,
+    personalityTraits: [],
+    goodWith: [],
+    badWith: [],
+    specialNeeds: {
+      specialNeeds: Boolean,
+      needs: [],
+      description: ''
+    },
+    shelter: ''
   }
 ];

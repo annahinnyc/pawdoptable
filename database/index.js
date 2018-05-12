@@ -33,13 +33,13 @@ let UserSchema = new Schema({
     yard: Boolean,
     size: Number
   },
-  childrenAtHome: {
-    children: Boolean,
+  children: {
+    childrenAtHome: Boolean,
     number: Number,
     ages: Array
   },
-  petsAtHome: {
-    pets: Boolean,
+  pets: {
+    petsAtHome: Boolean,
     number: Number,
     type: Array
   },
