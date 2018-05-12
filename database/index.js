@@ -15,26 +15,83 @@ mongoose.connect(uristring, (err) => {
 //set user schema
 let UserSchema = new Schema({
   username: { type: String, unique: true },
-  email: { type: String, unique: true},
+  email: { type: String, unique: true },
   password: String,
   name: String,
   phone: String,
   profilePhotoUrl: String,
-  location: String,
+  location: {
+    street: String,
+    city: String,
+    state: String,
+    zip: String
+  },
   description: String,
   photos: Array,
   homeType: Array,
-  yard: Array,
-  childrenAtHome: Array,
-  petsAtHome: Array,
-  favoritedPets: Array,
-  petPreferences: Array,
+  yard: {
+    yard: Boolean,
+    size: Number
+  },
+  childrenAtHome: {
+    children: Boolean,
+    number: Number,
+    ages: Array
+  },
+  petsAtHome: {
+    pets: Boolean,
+    number: Number,
+    type: Array
+  },
+  favoritedPets: [{ type: Schema.Types.ObjectId, ref: "Pet" }],
+  petPreferences: {
+    species: String,
+    mainBreed: String,
+    subBreeds: Array,
+    age: Number,
+    height: Number,
+    weight: Number,
+    energy: Number,
+    personalityTraits: Array,
+    goodWith: Array,
+    badWith: Array,
+    specialNeeds: {
+      specialNeeds: Boolean,
+      needs: Array,
+      description: String
+    },
+    shelter: { type: Schema.Types.ObjectId, ref: "Shelter" },
+    distance: Number
+  },
   backgroundCheck: Array
 });
 
 //compile schema into a model
 let User = mongoose.model('User', UserSchema);
 
+/**********************************************/
+let PetSchema = new Schema({
+  species: String,
+  mainBreed: String,
+  subBreeds: [],
+  name: String,
+  description: String,
+  age: String,
+  height: Number,
+  weight: Number,
+  energy: Number,
+  personalityTraits: [],
+  goodWith: [],
+  badWith: [],
+  specialNeeds: {
+    specialNeeds: Boolean,
+    needs: [],
+    description: String
+  },
+  shelter: String
+});
+
+let Pet = mongoose.model('Pet', PetSchema);
 
 module.exports = {
 //database search function to ID whether uniq user exist in the db returns boolean
