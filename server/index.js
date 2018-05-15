@@ -9,7 +9,15 @@ const schema = require('../server/register-api.js');
 const app = express();
 
 // The GraphQL endpoint
-app.use("/graphql", bodyParser.json(), graphqlExpress({ schema }));
+app.use("/graphql", bodyParser.json(), graphqlExpress(req => { 
+  // const userForThisRequest = getUserForRequest(req);
+  return {
+    schema,
+    // context: {
+    //   userForReq: userForThisRequest,
+    // }
+  }
+ }));
 
 // GraphiQL, a visual editor for queries
 app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));

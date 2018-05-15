@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",
-    "react-dev": "webpack --watch",
+    "react-dev": "webpack --mode development --watch",
     "server-dev": "nodemon --inspect server/index.js",
+    "build": "webpack --mode production",
     "test": "SET TESTMONGO_URI='mongodb://localhost:27017/TESTlevelup' && node database/seed/dbSeed.js --timeout 1000 && mocha --timeout 10000"
   },
   "repository": {
@@ -46,6 +47,9 @@
     "webpack-cli": "^2.1.3"
   },
   "devDependencies": {
-    "babel-plugin-inline-import": "^2.0.6"
+    "babel-plugin-inline-import": "^2.0.6",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.17.4"
   }
 }
