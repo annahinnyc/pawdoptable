@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator'); //adds pre-save validation for unique fields within a Mongoose schema.
+// const uniqueValidator = require('mongoose-unique-validator'); //adds pre-save validation for unique fields within a Mongoose schema.
 const bcrypt = require('bcrypt'); // handles password hashing in the database
 const saltRounds = 5;
 let Schema = mongoose.Schema;
-let uristring = process.env.MONGODB_URI || 'mongodb://localhost:27017/users';
+let uristring = process.env.MONGODB_URI || 'mongodb://localhost:27017/pawdoptable';
 //establish connection
 mongoose.connect(uristring, (err) => {
   if (err) { console.log('mongodb not connected', err); }
@@ -11,32 +11,90 @@ mongoose.connect(uristring, (err) => {
     console.log('connected to database');
   }
 });
-
-//set user schema
-let UserSchema = new Schema({
-  username: { type: String, unique: true },
-  email: { type: String, unique: true},
-  password: String,
-  name: String,
-  phone: String,
-  profilePhotoUrl: String,
-  location: String,
-  description: String,
-  photos: Array,
-  homeType: Array,
-  yard: Array,
-  childrenAtHome: Array,
-  petsAtHome: Array,
-  favoritedPets: Array,
-  petPreferences: Array,
-  backgroundCheck: Array
-});
-
-//compile schema into a model
-let User = mongoose.model('User', UserSchema);
-
+mongoose.Promise = global.Promise;
 
 module.exports = {
+//set user schema
+  UserSchema: new Schema({
+    username: { type: String, unique: true },
+    email: { type: String, unique: true },
+    password: String,
+    name: String
+    // phone: String,
+    // profilePhotoUrl: String,
+    // location: {
+    //   street: String,
+    //   city: String,
+    //   state: String,
+    //   zip: String
+    // },
+    // description: String,
+    // photos: Array,
+    // homeType: Array,
+    // yard: {
+    //   yard: Boolean,
+    //   size: Number
+    // },
+    // children: {
+    //   childrenAtHome: Boolean,
+    //   number: Number,
+    //   ages: Array
+    // },
+    // pets: {
+    //   petsAtHome: Boolean,
+    //   number: Number,
+    //   type: Array
+    // },
+    // favoritedPets: [{ type: Schema.Types.ObjectId, ref: "Pet" }],
+    // petPreferences: {
+    //   species: String,
+    //   mainBreed: String,
+    //   subBreeds: Array,
+    //   age: Number,
+    //   height: Number,
+    //   weight: Number,
+    //   energy: Number,
+    //   personalityTraits: Array,
+    //   goodWith: Array,
+    //   badWith: Array,
+    //   specialNeeds: {
+    //     specialNeeds: Boolean,
+    //     needs: Array,
+    //     description: String
+    //   },
+    //   shelter: { type: Schema.Types.ObjectId, ref: "Shelter" },
+    //   distance: Number
+    // },
+    // backgroundCheck: Array
+  }),
+
+//compile schema into a model
+  User: mongoose.model('User', UserSchema),
+
+/**********************************************/
+  PetSchema: new Schema({
+    species: String,
+    mainBreed: String
+    // subBreeds: [],
+    // name: String,
+    // description: String,
+    // age: String,
+    // height: Number,
+    // weight: Number,
+    // energy: Number,
+    // personalityTraits: [],
+    // goodWith: [],
+    // badWith: [],
+    // specialNeeds: {
+    //   specialNeeds: Boolean,
+    //   needs: [],
+    //   description: String
+    // },
+    // shelter: String
+  }),
+
+  Pet: mongoose.model('Pet', PetSchema),
+
 //database search function to ID whether uniq user exist in the db returns boolean
   checkUser: (data, callback) => {
     User.find({})
@@ -76,6 +134,18 @@ module.exports = {
     });
   },
 
+  savePets: (data, callback) => {
+    let pet = new Pet({
+      species: data.species,
+      mainBreed: data.mainBreed
+    });
+
+    pet.save((err, pet) => {
+      if (err) { callback('Pet already exists', null); }
+      else { callback(null, pet); }
+    });
+  },
+
   //save user data
   saveUser: (data, callback) => {
     let plainTextPassword = data.password;
@@ -85,20 +155,20 @@ module.exports = {
         username: data.username,
         email: data.email,
         password: hash,
-        name: data.name,
-        phone: data.phone,
-        profilePhotoUrl: data.profileUrl,
-        type: data.type,
-        location: data.location,
-        description: data.description,
-        photos: [],
-        homeType: [],
-        yard: [],
-        childrenAtHome: [],
-        petsAtHome: [],
-        favoritedPets: [],
-        petPreferences: [],
-        backgroundCheck: []
+        name: data.name
+        // phone: data.phone,
+        // profilePhotoUrl: data.profileUrl,
+        // type: data.type,
+        // location: data.location,
+        // description: data.description,
+        // photos: [],
+        // homeType: [],
+        // yard: [],
+        // childrenAtHome: [],
+        // petsAtHome: [],
+        // favoritedPets: [],
+        // petPreferences: [],
+        // backgroundCheck: []
       });
 
       user.save((err, user) => {
@@ -132,3 +202,7 @@ module.exports = {
   // exports mongoose connection for server to reference
   connection: mongoose.connection
 };
+
+// module.exports.User = User;
+// module.exports.saveUser = saveUser;
+// module.exports.savePets = savePets;

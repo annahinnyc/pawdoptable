@@ -1,0 +1,21 @@
+type Pet {
+  _id: String!
+  species: String!
+  mainBreed: String!
+#   subBreeds: ARR
+#   name: String!
+#   age: Int
+#   description: String
+#   height: Int
+#   weight: Int
+#   energy: Int
+#   personalityTraits: ARR
+#   goodWith: ARR
+#   badWith: ARR
+#   specialNeeds: SpecialNeeds
+#   shelter: Shelter!
+}
+
+# type SpecialNeeds {
+
+# }

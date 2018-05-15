@@ -1,19 +1,14 @@
 import React, { Component, Fragment } from 'react';
+import styled from 'styled-components';
+import ReactDOM from "react-dom";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-      this.state = {
-        hello: 'world'
-      }
-  }
-
-  render() {
-    return (
+const App = () => {
+  return (
     <div>
-      <h1>Hello World</h1>;
+      <p>React here!</p>
+      <p>And I'm here too!</p>
     </div>
-  }
-}
-
+  );
+};
 export default App;
+ReactDOM.render(<App />, document.getElementById("app"));
