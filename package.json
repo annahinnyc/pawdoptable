@@ -8,6 +8,7 @@
     "react-dev": "webpack --mode development --watch",
     "server-dev": "nodemon --inspect server/index.js",
     "build": "webpack --mode production",
+    "seed": "node database/popDB.js",
     "test": "SET TESTMONGO_URI='mongodb://localhost:27017/TESTlevelup' && node database/seed/dbSeed.js --timeout 1000 && mocha --timeout 10000"
   },
   "repository": {

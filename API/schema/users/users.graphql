@@ -1,0 +1,49 @@
+type User {
+  _id: String!
+  name: String!
+  username: String!
+  email: String!
+#   phone: String
+#   profilePhotoUrl: String
+#   location: UserLoc
+#   description: String
+#   # photos: ARR
+#   # homeType: ARR
+#   yard: UserYard
+#   children: UserChildren
+#   pets: UserPets
+#   favoritedPets: [Pet]
+#   petPreferences: UserPetPrefs
+#   # backgroundCheck: ARR
+}
+
+# type UserLoc {
+#   user: User
+#   street: String!
+#   city: String!
+#   state: String!
+#   zip: Int!
+# }
+
+# type UserYard {
+#   user: User
+#   yard: Boolean!
+#   size: Int
+# }
+
+# type UserChildren {
+#   user: User
+#   children: Boolean!
+#   number: Int
+# }
+
+# type UserPets {
+#   user: User
+#   pets: Boolean!
+#   type: [String!]
+#   number: Int!
+# }
+
+# type UserPetPrefs {
+
+# }

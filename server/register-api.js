@@ -1,19 +1,20 @@
-import { makeExecutableSchema } from "graphql-tools";
-import UsersSchema './graphql_schema/users.graphql';
-import PetsSchema './graphql_schema/pets.graphql';
-import SheltersSchema from './graphql_schema/shelters.graphql';
+const { makeExecutableSchema } = require("graphql-tools");
+const UsersSchema = require('../API/schema/users/users.graphql');
+const PetsSchema = require("../API/schema/pets/pets.graphql");
+const SheltersSchema = require(".../API/schema/shelters/shelters.graphql");
+const db = require('../database/index.js');
 
-const testSchema = `
+const querySchema = `
   type Query {
-    hi: String
-    user: User
-    shelters: [Shelter]
-    pets: [Pet]
+    user(username: String): User
+    allUsers: [User]
+    allShelters: [Shelter]
+    allPets: [Pet]
   }
 `;
 
 const typeDefs = [
-  testSchema,
+  querySchema,
   UsersSchema,
   PetsSchema,
   SheltersSchema
@@ -21,20 +22,20 @@ const typeDefs = [
 
 const resolvers = {
   Query: {
-    hi() {
-      return 'Hey there';
+    user(args) {
+      return db.find({ args }).then(user => user);
     }
-    shelters() {
-      return [
-        {
-          _id: "aslkdfjlksjdlf",
-          name: "Bend Pet Rescue",
-          location: "Bend, OR"
-        }
-      ]
-    }
-    pets: () => pets
-    user: () => user
+    // shelters() {
+    //   return [
+    //     {
+    //       _id: "aslkdfjlksjdlf",
+    //       name: "Bend Pet Rescue",
+    //       location: "Bend, OR"
+    //     }
+    //   ]
+    // }
+    // pets: () => pets
+    // user: () => user
   }
 };
 
@@ -43,4 +44,4 @@ const schema = makeExecutableSchema({
   resolvers
 });
 
-export default schema;
+module.exports.schema;

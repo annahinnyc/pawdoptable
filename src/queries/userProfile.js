@@ -1,15 +1,27 @@
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
-const testQuery = gql`
-  {
-    hi
-    shelters {
-      _id
-      name
-      location
-    }
-  }
-`;
+const MIXED_QUERY = gql`
+	query user($username: String!) {
+		# from rest endpoint
+		# shelters @rest(route: ‘/shelters’) @type(type: ‘[Shelter]’) {
+    #   name 
+    #   location 
+    # }
 
-// export default graphql(testQuery)(App) from App component
+    # from graphql endpoint
+    user(username: $username) {
+      name
+      username
+      email 
+    }
+
+    # from local state
+    # network @client {
+    #   isConnected
+    # }
+}
+`; 
+
+
+// export default graphql(MIXED_QUERY)(App) from App component
