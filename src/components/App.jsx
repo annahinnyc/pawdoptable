@@ -1,14 +1,18 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
+import { Route, Link } from 'react-router-dom';
+import Landing from './Landing.jsx';
+import Navbar from './Navbar.jsx';
+import Footer from './Footer.jsx';
 
-const App = () => {
-  return (
-    <div>
-      <p>React here!</p>
-      <p>And I'm here too!</p>
-    </div>
-  );
+class App extends React.Component {
+  render () {
+    return (
+      <div>
+        <Route exact path='/' component={ Landing } />
+      </div>
+    )
+  }
 };
 export default App;
-ReactDOM.render(<App />, document.getElementById("app"));
